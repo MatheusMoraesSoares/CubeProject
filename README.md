@@ -54,6 +54,6 @@ CREATE TABLE dados(
 	list_id VARCHAR(255) NOT NULL,
 	FOREIGN KEY (list_id) REFERENCES lista(id),
 	PRIMARY KEY (name, list_id)
-)```
+)
 
 OBS: O projeto está incompleto, FrontEnd e testes automatizados ainda em andamento.
