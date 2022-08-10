@@ -1,0 +1,44 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdiNDEyM2UyLTBkMWEtNGM2Yy05NWU5LWY5YjkzZTVlYTFjOSIsImlhdCI6MTY1ODk3NTcwMiwiZXhwIjoxNjU5MDYyMTAyfQ.e2rcfAnEorUyPWno9JW4PfHid-UZRnpR5kiVouZv6Kc
+
+###create user
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "email": "matheus4@gmail.com",
+    "password": "123456"
+}
+
+###login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "matheus4@gmail.com",
+    "password": "1234567"
+}
+
+###create list
+POST http://localhost:3003/list/create/trabalho
+Authorization: {{token}}
+
+###get all lists
+GET http://localhost:3003/list/get
+Authorization: {{token}}
+
+###insert data
+POST http://localhost:3003/list/data/create
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+    "listId": "40a1cdb8-e69f-4d4e-9b04-a7d861e5efd7",
+    "firstName": "matheus",
+    "lastName": "soares",
+    "participation": 2
+}
+
+###get all data
+Get http://localhost:3003/list/data/get/40a1cdb8-e69f-4d4e-9b04-a7d861e5efd7
+Authorization: {{token}}
