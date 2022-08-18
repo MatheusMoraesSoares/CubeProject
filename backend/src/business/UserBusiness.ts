@@ -41,7 +41,6 @@ export class UserBusiness {
         const newUser = new User(id, email, cryptedPassword )
 
         await this.userDatabase.insertUser(newUser)
-        await this.userDatabase.createPermissaoUserId(id)
 
         const token = Authenticator.generateToken({ id })
 

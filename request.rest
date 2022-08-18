@@ -1,12 +1,11 @@
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdiNDEyM2UyLTBkMWEtNGM2Yy05NWU5LWY5YjkzZTVlYTFjOSIsImlhdCI6MTY1ODk3NTcwMiwiZXhwIjoxNjU5MDYyMTAyfQ.e2rcfAnEorUyPWno9JW4PfHid-UZRnpR5kiVouZv6Kc
 
 ###create user
-
 POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-    "email": "matheus4@gmail.com",
+    "email": "kakashi4@gmail.com",
     "password": "123456"
 }
 
@@ -16,7 +15,7 @@ Content-Type: application/json
 
 {
     "email": "matheus4@gmail.com",
-    "password": "1234567"
+    "password": "123456"
 }
 
 ###create list

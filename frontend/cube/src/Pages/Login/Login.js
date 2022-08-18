@@ -5,6 +5,8 @@ import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 import axios from 'axios'
 import {BASE_URL} from '../../Constants/url'
+import { goToFeed } from "../../Router/coordinator";
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
@@ -13,10 +15,14 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(true)
     const [ errEmail, setErrEmail] = useState('')
     const [ errPass, setErrPass] = useState()
+    const [checkErrEmail, setCheckErrEmail] = useState(false)
+    const [checkErrPass, setCheckErrPass] = useState(false)
 
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword)
     }
+
+    const navigate = useNavigate()
 
     const onSubmitLogin = (event) => {
         event.preventDefault()
@@ -34,10 +40,24 @@ const Login = () => {
         await axios
             .post(`${ BASE_URL}/user/login`, body)
             .then((res)=>{
-                console.log(res.data)
+                setEmail('')
+                setPassword('')
+                setErrEmail('')
+                setErrPass('')
+                setCheckErrEmail(false)
+                setCheckErrPass(false)
+                localStorage.setItem(`token`, res.data.token)
+                goToFeed(navigate)
             })
             .catch((err)=>{
-                console.log(err.response)
+                if(err.response.data.message.includes('Invalid credentials: password')){
+                    setErrPass(err.response.data.message)
+                    setCheckErrPass(true)
+                } else {
+                    setErrEmail(err.response.data.message)
+                    setCheckErrEmail(true)
+                }
+                console.log(err.response.data.message)
             })
     }
 
@@ -46,6 +66,8 @@ const Login = () => {
             <p>Entrar</p>
             <Formu onSubmit={onSubmitLogin}>
                 <InputMaterial 
+                    error = {checkErrEmail}
+                    helperText={checkErrEmail ? errEmail : ''}
                     id="outlined-basic" 
                     label="Email" 
                     type={"email"}
@@ -57,6 +79,8 @@ const Login = () => {
                 />
                 <DivPassword>
                 <InputMaterial 
+                    error = {checkErrPass}
+                    helperText={checkErrPass ? errPass : ''}
                     id="outlined-basic" 
                     label="Password" 
                     type={showPassword ? 'password' : 'text'}
