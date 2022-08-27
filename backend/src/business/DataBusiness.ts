@@ -9,7 +9,7 @@ export class DataBusiness {
 
     constructor(
         private dataDatabase: DataDatabase
-    ) { }
+    ) {}
 
     insertData = async (data: DataInputDTO): Promise<void> => {
         try {
