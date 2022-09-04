@@ -44,11 +44,17 @@ export class ListBusiness {
         try {
 
             const temp = await this.listDatabase.getListByUserId(userId)
-            let listsId: string[] = []
+            let listsId: object[] = [{}]
             for (let i = 0; i<temp.length; i++) {
-                listsId.push(temp[i].list_id)
+                // listsId.push(temp[i].list_id)
+                listsId[i] = temp[i]
             }
- 
+            console.log(temp, listsId)
+            listsId = [
+                {id: '23f294b9-096c-42f3-b9bb-6f1921fca0e3'},
+                {id: '40a1cdb8-e69f-4d4e-9b04-a7d861e5efd7'}
+            ]
+            console.log(listsId)
             const result = await this.listDatabase.getAllListsById(listsId)
 
             return result
@@ -57,3 +63,8 @@ export class ListBusiness {
         }
     }
 }
+
+[
+    {list_id: "minha id"},
+    {list_id: "minha outra id"}
+]

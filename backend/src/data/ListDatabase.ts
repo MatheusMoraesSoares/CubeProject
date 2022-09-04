@@ -62,12 +62,17 @@ export class ListDatabase extends BaseDatabase {
         }
     }
 
-    getAllListsById = async (id: string[]) => {
+    getAllListsById = async (id: any) => {
         try {
+            id = [
+            {id: '23f294b9-096c-42f3-b9bb-6f1921fca0e3'},
+            {id: '40a1cdb8-e69f-4d4e-9b04-a7d861e5efd7'}
+        ]
             const result = await BaseDatabase.connection()
                 .select("*")
                 .from(ListDatabase.TABLE_LIST)
-                .where({ id })
+                .where({id})
+                console.log('algo')
 
             return result
         } catch (error: any) {
